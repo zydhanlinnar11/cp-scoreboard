@@ -28,11 +28,28 @@ const Table: FC<Props> = ({ problems, teams }) => {
             <td>{rank}</td>
             <td>{name}</td>
             <td>
-              {score.solvedCount} / {score.penalty}
+              <p>{score.solvedCount}</p>
+              <p>{score.penalty}</p>
             </td>
             {problems.map(
-              ({ firstToSolve, isSolved, pendingCount, problem, tryCount }) => (
-                <td key={problem.label}>{tryCount}</td>
+              ({
+                firstToSolve,
+                isSolved,
+                pendingCount,
+                problem,
+                tryCount,
+                time,
+              }) => (
+                <td key={problem.label}>
+                  {tryCount > 0 && (
+                    <>
+                      <p>{time === null ? '-' : time}</p>
+                      <small>
+                        {tryCount} {tryCount === 1 ? 'try' : 'tries'}
+                      </small>
+                    </>
+                  )}
+                </td>
               )
             )}
           </tr>
