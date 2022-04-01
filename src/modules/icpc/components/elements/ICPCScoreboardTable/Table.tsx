@@ -11,7 +11,6 @@ type Props = {
 
 const getProgressClassName = (count: number, total: number) => {
   const progress = Math.round(Math.round((count * 100) / total) / 10) * 10
-  console.log(progress)
   return styles[`progress${progress}`]
 }
 
