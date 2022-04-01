@@ -22,9 +22,6 @@ export const convertToICPCScoreboardData: ConvertToICPCScoreboardData = (
   teams.forEach((team) => (teamsObj[team.id] = team))
 
   return {
-    lastUpdated: new Date().toLocaleTimeString('id-ID', {
-      timeZone: 'Asia/Jakarta',
-    }),
     problems: problems.map(({ label, name }) => ({ label, name })),
     teams: data.rows.map((row) => ({
       score: {
