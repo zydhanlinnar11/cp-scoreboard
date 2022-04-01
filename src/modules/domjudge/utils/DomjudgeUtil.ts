@@ -44,6 +44,7 @@ export const convertToICPCScoreboardData: ConvertToICPCScoreboardData = (
         pendingCount: problem.num_pending,
         isSolved: problem.solved,
         firstToSolve: problem.first_to_solve,
+        time: problem.time ?? null,
       })),
       id: row.team_id,
     })),

@@ -6,6 +6,7 @@ type TeamProblem = {
   pendingCount: number
   isSolved: boolean
   firstToSolve: boolean
+  time: number | null
 }
 
 export default TeamProblem
