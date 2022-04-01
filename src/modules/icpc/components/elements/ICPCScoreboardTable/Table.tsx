@@ -9,12 +9,23 @@ type Props = {
   teams: Team[]
 }
 
+const getProgressClassName = (count: number, total: number) => {
+  const progress = Math.round(Math.round((count * 100) / total) / 10) * 10
+  console.log(progress)
+  return styles[`progress${progress}`]
+}
+
 const Table: FC<Props> = ({ problems, teams }) => {
+  const totalProblems = problems.length
+
   return (
     <table className={styles.table}>
       <thead className={styles.scoreThead}>
         <tr>
-          <th className={styles.scoreTh} style={{ borderLeft: 'none' }}>
+          <th
+            className={clsx(styles.scoreTh, styles.rankTh)}
+            style={{ borderLeft: 'none' }}
+          >
             Rank
           </th>
           <th className={styles.scoreTh}>Team</th>
@@ -36,13 +47,16 @@ const Table: FC<Props> = ({ problems, teams }) => {
             <td className={styles.scoreTd}>{rank}</td>
             <td className={clsx(styles.scoreTd, styles.teamNameTd)}>
               <p>{name}</p>
-              <small className={styles.teamInstitution}>
-                {institution.name}
-              </small>
+              <small className={styles.small}>{institution.name}</small>
             </td>
-            <td className={styles.scoreTd}>
+            <td
+              className={clsx(
+                styles.scoreTd,
+                getProgressClassName(score.solvedCount, totalProblems)
+              )}
+            >
               <p>{score.solvedCount}</p>
-              <small>{score.penalty}</small>
+              <small className={styles.small}>{score.penalty}</small>
             </td>
             {problems.map(
               ({
@@ -53,11 +67,25 @@ const Table: FC<Props> = ({ problems, teams }) => {
                 tryCount,
                 time,
               }) => (
-                <td className={styles.scoreTd} key={problem.label}>
+                <td
+                  className={clsx(
+                    styles.scoreTd,
+                    pendingCount > 0
+                      ? styles.pending
+                      : tryCount > 0
+                      ? isSolved
+                        ? firstToSolve
+                          ? styles.firstToSolve
+                          : styles.progress100
+                        : styles.progress0
+                      : ''
+                  )}
+                  key={problem.label}
+                >
                   {tryCount > 0 && (
                     <>
                       <p>{time === null ? '-' : time}</p>
-                      <small>
+                      <small className={styles.small}>
                         {tryCount} {tryCount === 1 ? 'try' : 'tries'}
                       </small>
                     </>
