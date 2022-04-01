@@ -3,6 +3,7 @@ import TeamProblem from '@/icpc/types/TeamProblem'
 import TeamScore from '@/icpc/types/TeamScore'
 
 type Team = {
+  id: string
   name: string
   institution: Institution
   problems: TeamProblem[]

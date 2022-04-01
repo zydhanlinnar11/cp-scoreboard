@@ -45,6 +45,7 @@ export const convertToICPCScoreboardData: ConvertToICPCScoreboardData = (
         isSolved: problem.solved,
         firstToSolve: problem.first_to_solve,
       })),
+      id: row.team_id,
     })),
   }
 }
