@@ -5,7 +5,6 @@ import TeamScore from '@/icpc/types/TeamScore'
 type Team = {
   name: string
   institution: Institution
-  url?: string
   problems: TeamProblem[]
   score: TeamScore
 }
