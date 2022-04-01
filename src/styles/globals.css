@@ -1,3 +1,12 @@
+:root {
+  --primary-bg-color: #fff;
+
+  --primary-text-color: #000;
+  --secondary-text-color: #6b7280;
+
+  --table-border-color: #edf2f7;
+}
+
 html,
 body {
   padding: 0;
@@ -12,5 +21,6 @@ a {
 }
 
 * {
-  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }

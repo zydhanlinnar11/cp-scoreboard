@@ -1,0 +1,35 @@
+.scoreTh {
+  text-align: center;
+  background: var(--primary-bg-color);
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+  border-bottom: 1px solid var(--table-border-color);
+  border-left: 1px solid var(--table-border-color);
+  min-width: 64px;
+}
+
+.scoreThead {
+  height: 40.5px;
+}
+
+.table {
+  border-spacing: 0px;
+}
+
+.scoreTd {
+  text-align: center;
+  border-bottom: 1px solid var(--table-border-color);
+  border-left: 1px solid var(--table-border-color);
+  padding: 3px 1px;
+  white-space: nowrap;
+}
+
+.teamNameTd {
+  text-align: left;
+}
+
+.teamInstitution {
+  color: var(--secondary-text-color);
+  font-size: 0.7rem;
+}

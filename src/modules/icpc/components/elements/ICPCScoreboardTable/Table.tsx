@@ -1,6 +1,8 @@
 import Problem from '@/icpc/types/Problem'
 import Team from '@/icpc/types/Team'
 import { FC } from 'react'
+import styles from '@/styles/Table.module.css'
+import clsx from 'clsx'
 
 type Props = {
   problems: Problem[]
@@ -9,14 +11,20 @@ type Props = {
 
 const Table: FC<Props> = ({ problems, teams }) => {
   return (
-    <table>
-      <thead>
+    <table className={styles.table}>
+      <thead className={styles.scoreThead}>
         <tr>
-          <th>Rank</th>
-          <th>Team</th>
-          <th>Score</th>
+          <th className={styles.scoreTh} style={{ borderLeft: 'none' }}>
+            Rank
+          </th>
+          <th className={styles.scoreTh}>Team</th>
+          <th className={styles.scoreTh}>Score</th>
           {problems.map(({ label, name }) => (
-            <th key={label} title={`Problem ${name}`}>
+            <th
+              key={label}
+              title={`Problem ${name}`}
+              className={styles.scoreTh}
+            >
               {label}
             </th>
           ))}
@@ -25,11 +33,16 @@ const Table: FC<Props> = ({ problems, teams }) => {
       <tbody>
         {teams.map(({ id, institution, name, problems, score }, rank) => (
           <tr key={id}>
-            <td>{rank}</td>
-            <td>{name}</td>
-            <td>
+            <td className={styles.scoreTd}>{rank}</td>
+            <td className={clsx(styles.scoreTd, styles.teamNameTd)}>
+              <p>{name}</p>
+              <small className={styles.teamInstitution}>
+                {institution.name}
+              </small>
+            </td>
+            <td className={styles.scoreTd}>
               <p>{score.solvedCount}</p>
-              <p>{score.penalty}</p>
+              <small>{score.penalty}</small>
             </td>
             {problems.map(
               ({
@@ -40,7 +53,7 @@ const Table: FC<Props> = ({ problems, teams }) => {
                 tryCount,
                 time,
               }) => (
-                <td key={problem.label}>
+                <td className={styles.scoreTd} key={problem.label}>
                   {tryCount > 0 && (
                     <>
                       <p>{time === null ? '-' : time}</p>
