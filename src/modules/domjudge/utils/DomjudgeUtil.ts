@@ -2,11 +2,13 @@ import ScoreboardData from '@/icpc/types/ScoreboardData'
 import DomjudgeScoreboardData from '@/domjudge/types/DomjudgeScoreboardData'
 import DomjudgeScoreboardProblem from '@/domjudge/types/DomjudgeScoreboardProblem'
 import DomjudgeTeam from '@/domjudge/types/DomjudgeTeam'
+import DomjudgeContest from '@/domjudge/types/DomjudgeContest'
 
 type ConvertToICPCScoreboardData = (
   data: DomjudgeScoreboardData,
   teams: DomjudgeTeam[],
-  problems: DomjudgeScoreboardProblem[]
+  problems: DomjudgeScoreboardProblem[],
+  contest: DomjudgeContest
 ) => ScoreboardData
 
 type TeamIdAsIndex = {
@@ -16,12 +18,18 @@ type TeamIdAsIndex = {
 export const convertToICPCScoreboardData: ConvertToICPCScoreboardData = (
   data,
   teams,
-  problems
+  problems,
+  contest
 ) => {
   const teamsObj: TeamIdAsIndex = {}
   teams.forEach((team) => (teamsObj[team.id] = team))
 
   return {
+    contest: {
+      name: contest.formal_name,
+      endTime: contest.end_time,
+      startTime: contest.start_time,
+    },
     problems: problems.map(({ label, name }) => ({ label, name })),
     teams: data.rows.map((row) => ({
       score: {
