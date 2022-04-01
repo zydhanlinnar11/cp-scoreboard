@@ -26,11 +26,17 @@ const HomePage: FC<Props> = ({
         title={`${contest.name} Scoreboard - Competitive Programming Scoreboard`}
         description="An example from ICPC Scoreboard with data taken from DOMJudge demoweb nwerce18"
       />
-      <header>
+      <header
+        style={{
+          textAlign: 'center',
+          paddingTop: '48px',
+          paddingBottom: '48px',
+        }}
+      >
         <h1>{contest.name} Scoreboard</h1>
         <p>Last updated: {lastUpdated}</p>
       </header>
-      <main>
+      <main style={{ display: 'flex', justifyContent: 'center' }}>
         <ICPCScoreboardTable problems={problems} teams={teams} />
       </main>
     </>
