@@ -43,7 +43,9 @@ const Table: FC<Props> = ({ problems, teams }) => {
       <tbody>
         {teams.map(({ id, institution, name, problems, score }, rank) => (
           <tr key={id}>
-            <td className={styles.scoreTd}>{rank + 1}</td>
+            <td className={styles.scoreTd} style={{ borderLeft: 'none' }}>
+              {rank + 1}
+            </td>
             <td className={clsx(styles.scoreTd, styles.teamNameTd)}>
               <p>{name}</p>
               <small className={styles.small}>{institution.name}</small>
