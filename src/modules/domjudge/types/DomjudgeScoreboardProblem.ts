@@ -7,7 +7,7 @@ type DomjudgeScoreboardProblem = {
   rgb: string
   color: string
   time_limit: number
-  test_data_count: number
+  test_data_count?: number
 }
 
 export default DomjudgeScoreboardProblem

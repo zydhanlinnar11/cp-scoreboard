@@ -4,7 +4,7 @@ type DomjudgeScoreboardRowProblem = {
   num_judged: number
   num_pending: number
   solved: boolean
-  time: number
+  time?: number
   first_to_solve: boolean
 }
 

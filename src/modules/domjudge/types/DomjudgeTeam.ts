@@ -6,8 +6,8 @@ type DomjudgeTeam = {
   id: string
   icpc_id: string
   name: string
-  display_name: string
-  public_description: string
+  display_name: string | null
+  public_description: string | null
 }
 
 export default DomjudgeTeam
