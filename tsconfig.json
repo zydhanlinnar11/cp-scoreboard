@@ -19,7 +19,8 @@
       "@/components/*": ["src/components/*"],
       "@/styles/*": ["src/styles/*"],
       "@/icpc/*": ["src/modules/icpc/*"],
-      "@/ioi/*": ["src/modules/ioi/*"]
+      "@/ioi/*": ["src/modules/ioi/*"],
+      "@/domjudge/*": ["src/modules/domjudge/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
