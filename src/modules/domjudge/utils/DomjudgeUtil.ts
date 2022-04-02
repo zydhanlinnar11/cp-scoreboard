@@ -11,6 +11,16 @@ type ConvertToICPCScoreboardData = (
   contest: DomjudgeContest
 ) => ScoreboardData
 
+type GetScoreboardFromAPI = (
+  baseUrl: string,
+  cid: string
+) => Promise<{
+  data: DomjudgeScoreboardData
+  teams: DomjudgeTeam[]
+  problems: DomjudgeScoreboardProblem[]
+  contest: DomjudgeContest
+}>
+
 type TeamIdAsIndex = {
   [index: string]: DomjudgeTeam
 }
@@ -54,4 +64,20 @@ export const convertToICPCScoreboardData: ConvertToICPCScoreboardData = (
       id: row.team_id,
     })),
   }
+}
+
+export const getScoreboardFromAPI: GetScoreboardFromAPI = async (
+  baseUrl,
+  cid
+) => {
+  let res = await fetch(`${baseUrl}/api/contests/${cid}`)
+  const contest = await res.json()
+  res = await fetch(`${baseUrl}/api/contests/${cid}/teams`)
+  const teams = await res.json()
+  res = await fetch(`${baseUrl}/api/contests/${cid}/problems`)
+  const problems = await res.json()
+  res = await fetch(`${baseUrl}/api/contests/${cid}/scoreboard`)
+  const data = await res.json()
+
+  return { contest, teams, problems, data }
 }
